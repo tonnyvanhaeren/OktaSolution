@@ -7,9 +7,9 @@ namespace OktaSolution.config
 {
     public class AppSettings
     {
-        public string ConnectionString { get; set; }
-        public string Domain { get; set; }
-        public string ClientId { get; set; }
-        public string ClientSecret { get; set; }
+        public string MongoConnectionString { get; set; }
+        public string OktaDomain { get; set; }
+        public string OktaClientId { get; set; }
+        public string OktaClientSecret { get; set; }
     }
 }
