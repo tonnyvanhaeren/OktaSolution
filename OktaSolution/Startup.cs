@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using OktaSolution.config;
+using OktaSolution.Services;
 
 namespace OktaSolution
 {
@@ -27,6 +29,12 @@ namespace OktaSolution
             var appSettings = Configuration.GetSection("appSettings")
                                             .Get<AppSettings>();
 
+            services.Configure<AppSettings>(Configuration.GetSection("appSettings"));
+            services.AddSingleton<IAppSettings>(x => x.GetRequiredService<IOptions<AppSettings>>().Value);
+
+            // Console.WriteLine("APP-SETTINGS" + appSettings.MongoConnectionString);
+
+            services.AddSingleton<SubmissionService>();
             services.AddControllersWithViews();
         }
 
